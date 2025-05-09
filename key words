@@ -1,0 +1,29 @@
+import pandas as pd
+from sklearn.feature_extraction.text import CountVectorizer
+import nltk
+from nltk.corpus import stopwords
+import string
+
+df = pd.read_excel(r"C:\Users\Eriigbagbo\Desktop\Solvings\DATA.xlsx")
+
+responses = []
+for col in df.columns:
+    responses.extend(df[col].dropna().astype(str).tolist())
+
+def clean_text(text):
+    text = text.lower()
+    text = ''.join([char for char in text if char not in string.punctuation])
+    tokens = text.split()
+    tokens = [word for word in tokens if word not in stop_words]
+    return ' '.join(tokens)
+
+cleaned_responses = [clean_text(resp) for resp in responses]
+
+vectorizer = CountVectorizer(max_features=50)
+X = vectorizer.fit_transform(cleaned_responses)
+
+codes = vectorizer.get_feature_names_out()
+
+print("INITIAL CODES SUGGESTED FROM RESPONSES:")
+for i, code in enumerate(codes, 1):
+    print(f"{i}. {code}")
