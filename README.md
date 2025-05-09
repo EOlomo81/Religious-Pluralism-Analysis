@@ -9,7 +9,6 @@ This project explores how religion shapes social change in Nigeria using qualita
 - `data/`: The cleaned dataset used for thematic grouping.
 - `report/`: Full written analysis with interpretations, findings, and theoretical contributions.
 - `code/`: Python code used for extracting key terms from raw data.
-- `visuals/` (optional): Any graphs or figures used in the report.
 
 ## Methodology
 
